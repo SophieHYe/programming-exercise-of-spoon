@@ -9,6 +9,5 @@ public class TestPublicConstructorClass {
 	public static void util1() {
 		System.out.println("util1");
 	}
-	
-	
+		
 }
