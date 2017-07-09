@@ -1,4 +1,4 @@
-package com.abc.programmingtest;
+package exercise.spoon.reporter;
 
 public enum WarningLevel {	
 	ERROR,
