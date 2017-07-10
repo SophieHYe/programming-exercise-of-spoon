@@ -2,29 +2,63 @@ package exercise.spoon.reporter;
 
 import java.io.Serializable;
 
+/**
+ * The MethodReporter include all methodes analysis information at method level
+ * 
+ * @author yehe
+ *
+ */
 public class MethodReporter implements Serializable {
 
+	/**
+	 * Line number of the checking method
+	 */
 
-	
-	
+	private int lineNo;
 
-	@Override
-	public String toString() {
-		return "MethodReport [lineNo=" + lineNo + ", codeSnippet=" + codeSnippet + ", warningLevel=" + warningLevel
-				+ ", WarningMessage=" + WarningMessage + "]";
-	}
+	/**
+	 * Code snippet of the checking method
+	 */
 
-	
+	private String codeSnippet;
 
-	public MethodReporter(int lineNo, String codeSnippet, WarningLevel warningLevel, String warningMessage) {
+	/**
+	 * Warning level of the checking method
+	 */
+
+	private WarningLevel warningLevel;
+
+	/**
+	 * Warning message of checking method
+	 */
+
+	private String WarningMessage;
+
+	/**
+	 * Absolute file of the checking method
+	 */
+
+	private String codePath;
+
+	/**
+	 * Constructor method of MethodReporter
+	 * 
+	 * @param lineNo
+	 * @param codeSnippet
+	 * @param warningLevel
+	 * @param warningMessage
+	 * @param codePath
+	 */
+
+	public MethodReporter(int lineNo, String codeSnippet, WarningLevel warningLevel, String warningMessage,
+			String codePath) {
 		super();
 		this.lineNo = lineNo;
 		this.codeSnippet = codeSnippet;
 		this.warningLevel = warningLevel;
 		WarningMessage = warningMessage;
+		this.codePath = codePath;
 	}
-
-
 
 	public int getLineNo() {
 		return lineNo;
@@ -58,14 +92,12 @@ public class MethodReporter implements Serializable {
 		WarningMessage = warningMessage;
 	}
 
-	private int lineNo;
-	
-	private String codeSnippet;
-	
-	private WarningLevel warningLevel;
-	
-	private String WarningMessage;
-	
-	
-	
+	public String getCodePath() {
+		return codePath;
+	}
+
+	public void setCodePath(String codePath) {
+		this.codePath = codePath;
+	}
+
 }
