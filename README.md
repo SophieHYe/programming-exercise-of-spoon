@@ -23,7 +23,7 @@ For Linux or Mac user, please click  start.sh
 
 ```
  The result report would be presented in index.html
- ![image]https://github.com/SophieHYe/programming-exercise-of-spoon/result_screenshot.png)
  
 ```
- 
+![image]https://github.com/SophieHYe/programming-exercise-of-spoon/result_screenshot.png)
+![Alt text]https://github.com/SophieHYe/programming-exercise-of-spoon/result_screenshot.png)
