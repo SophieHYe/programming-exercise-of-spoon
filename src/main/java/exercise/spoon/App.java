@@ -39,7 +39,7 @@ public class App {
 			FileUtils.writeJson("", "window.analyzerReport = " + result, "report.js");
 			System.out.println("Done");
 		} catch (Exception e) {
-			System.out.println("Incorrect file path, please correct it and try again! ");
+			System.out.println("Error occurs: "+e);
 		}
 	}
 

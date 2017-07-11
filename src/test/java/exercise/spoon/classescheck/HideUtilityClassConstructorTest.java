@@ -14,12 +14,21 @@ import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.declaration.ModifierKind;
 import spoon.reflect.visitor.filter.AbstractFilter;
 
+/**
+ * 
+ * @author yehe
+ *
+ */
 public class HideUtilityClassConstructorTest {
+	/**
+	 * Test the source code of this projects
+	 * @throws Exception
+	 */
 	@Test
 	public void testPublicConstructor() throws Exception {
 
 		SpoonAPI spoon = new Launcher();
-		spoon.addInputResource("..\\src\\test");
+		spoon.addInputResource("..");
 		spoon.buildModel();
 		AbstractFilter<CtClass> filter = new AbstractFilter<CtClass>() {
 
@@ -49,7 +58,7 @@ public class HideUtilityClassConstructorTest {
 
 		List<CtClass> elements = spoon.getFactory().Package().getRootPackage().getElements(filter);
 
-		Assert.assertEquals(0, elements.size());
+		Assert.assertEquals(4, elements.size());
 
 	}
 
