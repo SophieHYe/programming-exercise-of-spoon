@@ -18,6 +18,7 @@ mvn package assembly:single
 For Windows user, please click start.bat
 For Linux or Mac user, please click  start.sh
 ```
+![image](https://github.com/SophieHYe/programming-exercise-of-spoon/blob/master/demo.gif)
 
 ## Check the result
 
