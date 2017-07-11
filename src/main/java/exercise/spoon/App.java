@@ -3,6 +3,7 @@ package exercise.spoon;
 
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import com.alibaba.fastjson.JSON;
@@ -10,6 +11,7 @@ import exercise.spoon.analyzer.ClassAnalyzer;
 import exercise.spoon.analyzer.PackageAnalyzer;
 import exercise.spoon.analyzer.utils.FileUtils;
 import exercise.spoon.reporter.ClassReporter;
+import exercise.spoon.reporter.MethodReporter;
 import exercise.spoon.reporter.Reporter;
 import spoon.Launcher;
 import spoon.SpoonAPI;
@@ -61,10 +63,10 @@ public class App {
 		Iterator<Entry<String, ClassReporter>> it = classesAnalyzers.entrySet().iterator();
 		while(it.hasNext()){  
             Entry<String, ClassReporter> entry=it.next();  
-            if(null==entry.getValue().getMethodReport()) it.remove();
+            List<MethodReporter> methodReporterList = entry.getValue().getMethodReport();
+            if(null==methodReporterList) it.remove();
+            if(null!=methodReporterList&&methodReporterList.size()==0) it.remove();
 		}
-		return JSON.toJSON(reporter);
-		
+		return JSON.toJSON(reporter);		
 	}
-
 }
