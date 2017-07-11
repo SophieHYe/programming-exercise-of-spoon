@@ -26,4 +26,3 @@ For Linux or Mac user, please click  start.sh
  
 ```
 ![image](https://github.com/SophieHYe/programming-exercise-of-spoon/blob/master/result_screenshot.png)
-![Alt text](https://github.com/SophieHYe/programming-exercise-of-spoon/blob/master/result_screenshot.png)
