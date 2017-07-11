@@ -1,7 +1,5 @@
 package exercise.spoon;
 
-
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -25,48 +23,53 @@ import spoon.reflect.visitor.filter.TypeFilter;
  *
  */
 public class App {
-	
+
 	/**
 	 * Entrance method of spoon checker
-	 * @param args provides input path of java source files
+	 * 
+	 * @param args
+	 *            provides input path of java source files
 	 */
-	
-	public static void main (String[] args) {	
+
+	public static void main(String[] args) {
 		System.out.println("Starting to analyze the code..");
-		FileUtils.renameFile("", "report.js", "report.js"+System.currentTimeMillis());
-		try{	
-		Object result = sourceReader(args[0]);	
-		FileUtils.writeJson("", "window.analyzerReport = " +result, "report.js");
-		System.out.println("Done");
-		}catch (Exception e){
+		FileUtils.renameFile("", "report.js", "report.js" + System.currentTimeMillis());
+		try {
+			Object result = sourceReader(args[0]);
+			FileUtils.writeJson("", "window.analyzerReport = " + result, "report.js");
+			System.out.println("Done");
+		} catch (Exception e) {
 			System.out.println("Incorrect file path, please correct it and try again! ");
 		}
 	}
-	
-	
+
 	/**
 	 * 
-	 * @param path is the input path of java source files
+	 * @param path
+	 *            is the input path of java source files
 	 * @return
 	 */
-	public static Object sourceReader(String path){
-		final SpoonAPI spoon = new Launcher();				
+	public static Object sourceReader(String path) {
+		final SpoonAPI spoon = new Launcher();
 		spoon.addInputResource(path);
-		spoon.buildModel();	
-		//Get the root element of spoon elements
-		CtElement  rootElement = spoon.getModel().getRootPackage().getElements(new TypeFilter<CtElement>(CtElement.class)).get(0);
+		spoon.buildModel();
+		// Get the root element of spoon elements
+		CtElement rootElement = spoon.getModel().getRootPackage()
+				.getElements(new TypeFilter<CtElement>(CtElement.class)).get(0);
 		Reporter reporter = new Reporter();
-		new PackageAnalyzer().analyzer(rootElement,reporter);	
-		new ClassAnalyzer().analyzer(rootElement,reporter);	
-		//Remove empty classesAnalyzer
-		Map<String, ClassReporter> classesAnalyzers = reporter.getClassesAnalyzer();			
+		new PackageAnalyzer().analyzer(rootElement, reporter);
+		new ClassAnalyzer().analyzer(rootElement, reporter);
+		// Remove empty classesAnalyzer
+		Map<String, ClassReporter> classesAnalyzers = reporter.getClassesAnalyzer();
 		Iterator<Entry<String, ClassReporter>> it = classesAnalyzers.entrySet().iterator();
-		while(it.hasNext()){  
-            Entry<String, ClassReporter> entry=it.next();  
-            List<MethodReporter> methodReporterList = entry.getValue().getMethodReport();
-            if(null==methodReporterList) it.remove();
-            if(null!=methodReporterList&&methodReporterList.size()==0) it.remove();
+		while (it.hasNext()) {
+			Entry<String, ClassReporter> entry = it.next();
+			List<MethodReporter> methodReporterList = entry.getValue().getMethodReport();
+			if (null == methodReporterList)
+				it.remove();
+			if (null != methodReporterList && methodReporterList.size() == 0)
+				it.remove();
 		}
-		return JSON.toJSON(reporter);		
+		return JSON.toJSON(reporter);
 	}
 }
